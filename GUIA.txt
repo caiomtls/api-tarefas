@@ -1,0 +1,16 @@
+A API pode ser acessada pelo seguinte link: 
+https://api-todolist.herokuapp.com/
+
+OU 
+
+Pode ser executada no local host. Para isso é necessário:
+    1- Ter instalado o Node.js;
+    2- Abrir um terminal no diretório raiz da API;
+    3- Instalar as dependências com o comando npm install;
+    4- E iniciar o servidor com o comando node server.js;
+
+O cliente.py deve ser executado com Python 3.*
+ Obs.: Dependendo da forma de utilização da API, seu endereço
+       deve ser alterado.
+
+O arquivo Insomnia_2022-12-12.json contém os testes das rotas.
