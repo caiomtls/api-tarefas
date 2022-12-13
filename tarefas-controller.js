@@ -25,7 +25,7 @@ exports.cadastrarTarefa = function (req, res) {
 exports.listarTarefas = function (req, res) {
     Tarefas.find({}, function (err, tarefas) {
         if (err) return next(err)
-        return res.json(tarefas.prazo);
+        return res.json(tarefas);
     })
 }
 
