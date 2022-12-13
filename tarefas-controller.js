@@ -25,7 +25,7 @@ exports.cadastrarTarefa = function (req, res) {
 exports.listarTarefas = function (req, res) {
     Tarefas.find({}, function (err, tarefas) {
         if (err) return next(err)
-        return res.json(tarefas);
+        return res.json(tarefas.prazo);
     })
 }
 
@@ -35,7 +35,7 @@ exports.buscarTarefa = function (req, res) {
         if (tarefa) {
             return res.json(tarefa)
         }
-        return res.send('Não existe tarefa com o ID solicitado')
+        return res.send('Nao existe tarefa com o ID solicitado')
     })
 }
 
@@ -58,7 +58,7 @@ exports.atualizarTarefa = function (req, res) {
             if (tarefa) {
                 return res.send('Tarefa atualizada.')
             }
-            return res.send('Não existe tarefa com o ID solicitado')
+            return res.send('Nao existe tarefa com o ID solicitado')
 
         })
 }
@@ -70,7 +70,7 @@ exports.ExcluirTarefa = function (req, res) {
         if (tarefa) {
             return res.send('Tarefa exlcluida.')
         }
-        return res.send('Não existe tarefa com o ID solicitado')
+        return res.send('Nao existe tarefa com o ID solicitado')
     })
 
 }
