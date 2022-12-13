@@ -1,11 +1,14 @@
 import requests
 import json
 
+
 def nao_econtrado():
     print('Nao existe tarefa com o ID solicitado\n')
 
+
 def esperar():
     input("Pressione Enter para continuar...")
+
 
 def criar_tarefa():
     url = "https://api-todolist.herokuapp.com/tarefas"
@@ -21,17 +24,21 @@ def criar_tarefa():
     tarefa["descricao"] = input('Descricao: ')  # Ex.: Enviar relatorio mensal
 
     op = input('Deseja inserir um prazo(s/n): ')
-    if op == 's' or 'S':
+    if op == 's' or op == 'S':
         tarefa["prazo"] = input('Prazo(YYYY-MM-DD ou YYYY-MM-DDTHH:mm:ssZ): ')
+    else:
+        tarefa.pop('prazo', None)  # Remove prazo do dicionario
 
     op = input('Deseja inserir se foi completa(s/n): ')
-    if op == 's' or 'S':
+    if op == 's' or op == 'S':
         if input('Completa(s/n): ') == 's' or 'S':
             tarefa["completa"] = True
         else:
             tarefa["completa"] = False
+    else:
+        tarefa.pop('completa', None)  # Remove completa do dicionario
 
-    myResponse = requests.post(url, json.dumps(tarefa))
+    myResponse = requests.post(url, json=tarefa)
     if (myResponse.ok):
         print(myResponse.content)
     else:
@@ -74,6 +81,43 @@ def buscar_tarefa():
     esperar()
 
 
+def atualizar_tarefa():
+    id = input("Digite o ID da tarefa a ser atualizada: ")
+    print()  # Quebra de linha
+    url = "https://api-todolist.herokuapp.com/tarefas/" + id
+
+    print(f'\n===== Atualizacao de tarefa ===== \n')
+
+    tarefa = {
+        "descricao": "",
+        "prazo": "",
+        "completa": False
+    }
+
+    tarefa["descricao"] = input('Descricao: ')  # Ex.: Enviar relatorio mensal
+
+    op = input('Deseja modificar um prazo(s/n): ')
+    if op == 's' or op == 'S':
+        tarefa["prazo"] = input('Prazo(YYYY-MM-DD ou YYYY-MM-DDTHH:mm:ssZ): ')
+    else:
+        tarefa.pop('prazo', None) # Remove prazo do dicionario
+
+    op = input('Deseja modificar se foi completa(s/n): ')
+    if op == 's' or op == 'S':
+        if input('Completa(s/n): ') == 's' or 'S':
+            tarefa["completa"] = True
+        else:
+            tarefa["completa"] = False
+    else:
+        tarefa.pop('completa', None) # Remove completa do dicionario
+
+    myResponse = requests.put(url, json = tarefa)
+    if (myResponse.ok):
+        print(myResponse.content)
+    else:
+        myResponse.raise_for_status()
+    esperar()
+
 def deletar_tarefa():
     id = input("Digite o ID da tarefa a ser deletada: ")
     print()  # Quebra de linha
@@ -86,7 +130,7 @@ def deletar_tarefa():
     esperar()
 
 
-operacoes = [criar_tarefa, listar_tarefas,  buscar_tarefa, deletar_tarefa]
+operacoes = [criar_tarefa, listar_tarefas,  buscar_tarefa, atualizar_tarefa, deletar_tarefa]
 op = 0
 while op != -1:
     print('''
