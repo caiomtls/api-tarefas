@@ -66,7 +66,7 @@ def listar_tarefas():
 def buscar_tarefa():
     id = input("Digite o ID da tarefa a ser buscada: ")
     print()  # Quebra de linha
-    url = "https://api-todolist.herokuapp.com/tarefas/" + id
+    url = "http://localhost:10000/tarefas/" + id
     myResponse = requests.get(url)
     if (myResponse.ok):
         try:
@@ -143,5 +143,5 @@ while op != -1:
     Digite -1 para encerrar.\n''')
     op = int(input(' Digite o número da operação desejada: '))
 
-    if (op != -1):
+    if (op in range(1,6)):
         operacoes[op-1]()
