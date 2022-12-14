@@ -66,7 +66,7 @@ def listar_tarefas():
 def buscar_tarefa():
     id = input("Digite o ID da tarefa a ser buscada: ")
     print()  # Quebra de linha
-    url = "http://localhost:10000/tarefas/" + id
+    url = "https://api-todolist.herokuapp.com/tarefas/" + id
     myResponse = requests.get(url)
     if (myResponse.ok):
         try:
