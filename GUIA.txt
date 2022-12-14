@@ -13,4 +13,4 @@ O cliente.py deve ser executado com Python 3.*
  Obs.: Se a API for usada localmente, os endereços
        de requisição devem ser alterados.
 
-O arquivo Insomnia_2022-12-12.json contém os testes das rotas.
+O arquivo Insomnia_2022-12-14.json contém os testes das rotas.
